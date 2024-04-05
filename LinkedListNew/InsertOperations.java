@@ -101,6 +101,64 @@ public class InsertOperations<T> {
             size++;
         }
     }
+
+    public boolean search( T value)
+    {
+        // Time complexity - O(n) because we have to traverse through the list.
+        Node currentNode = new Node();
+        currentNode = headNode;
+
+        while(currentNode != null )
+        {
+            if(currentNode.data == value)
+            {
+                return true;
+            }
+
+            currentNode = currentNode.nextNode;
+        }
+
+        return false;
+    }
+
+    public void deleteAtHead()
+    {
+        if(isEmpty())
+        {
+            return;
+        }
+        //make the nextNode of the headNode equal to new headNode
+        headNode = headNode.nextNode;
+        size--;
+    }
+
+    public void deleteByValue(T value) // TC -> O(n), In the worst case, you would have to traverse until the end of the list
+    {
+        Node currentNode = new Node();
+        Node prevNode = new Node();
+        currentNode = headNode;
+        prevNode = null;
+
+        if(currentNode.data == value)
+        {
+            // if value is present at the head;
+            deleteAtHead();
+            return;
+        }
+
+        //if value is not at head
+        while(currentNode != null)
+        {
+            if(currentNode.data == value)
+            {
+                prevNode.nextNode = currentNode.nextNode;
+                size--;
+            }
+
+            prevNode = currentNode;
+            currentNode = currentNode.nextNode;
+        }
+    }
 }
 
  class Main{
@@ -110,13 +168,20 @@ public class InsertOperations<T> {
              sll.insertAtEnd(i); // inserting value at the tail of the list
          }
          sll.printList();
-
-         System.out.println ("\nInserting 8 after 2");
+         boolean result = sll.search(5);
+         System.out.println(result);
+         sll.deleteAtHead();
+         sll.printList();
+         sll.deleteByValue(5);
+         sll.printList();
+        /* System.out.println ("\nInserting 8 after 2");
          sll.insertAfter(8, 2);
          sll.printList();   // calling insert after
          System.out.println ("\nInserting 10 after 3");
          sll.insertAfter (10, 3);   // calling insert after
          sll.printList();
+
+         */
      }
 
 }
