@@ -55,20 +55,26 @@ public class RemoveDuplicates {
 
 
     public static ListNode deleteDuplicates(ListNode head) {
-        ListNode temp = head;
-        while(temp != null)
+        ListNode curr = head;
+        ListNode compare = null;
+
+        while(curr != null && curr.nextNode != null)
         {
-            ListNode curr = temp;
-            while(curr!= null && curr.data == temp.data)
+            compare = curr;
+            while(compare.nextNode != null)
             {
-                curr = curr.nextNode;
+                if(curr.data == compare.nextNode.data)// check if duplicate
+                {
+                    compare.nextNode = compare.nextNode.nextNode;
+                }
+                else {
+                    compare = compare.nextNode;
+                }
             }
 
-            temp.nextNode = curr;
-            temp = temp.nextNode;
+            curr = curr.nextNode;
         }
-
-        return head;
+                 return head;
     }
 
 
