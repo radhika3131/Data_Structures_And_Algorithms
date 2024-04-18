@@ -3,6 +3,8 @@ package com.dataStructures.LinkedListNew;
 import com.dataStructures.LinkedList.IntersectionOfTwoLL;
 
 public class UnionAndIntersectionOfLL {
+
+    //Tc - O(n+m)
     public  static <T> InsertOperations<T> Union(InsertOperations<T> list1 , InsertOperations<T> list2)
     {
         if(list1.isEmpty())
@@ -43,6 +45,9 @@ public class UnionAndIntersectionOfLL {
         return false;
 
     }
+
+    // complexity for intersection will be O(n×m) because we traverse list1 in a loop which isO(n)
+    // and in each iteration, we call contains() which runs is O(m)
 
     public static <T> InsertOperations <T> intersection(InsertOperations<T> list1 , InsertOperations<T> list2)
     {
